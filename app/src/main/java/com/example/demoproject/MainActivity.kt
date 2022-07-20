@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demoproject.adapter.RecyclerViewAdapter
 import com.example.demoproject.data.model.ResultsItem
+import com.example.demoproject.databinding.ActivityMainBinding
 import com.example.demoproject.viewmodel.MainViewModel
 import com.example.demoproject.viewmodel.MainViewModelFactory
 import javax.inject.Inject
@@ -18,8 +20,8 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnUserItemClickListener{
 
+    lateinit var mainBinding: ActivityMainBinding
     lateinit var recyclerViewAdapter: RecyclerViewAdapter
-
     lateinit var mainViewModel: MainViewModel
 
     @Inject
@@ -27,9 +29,8 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnUserItemClickLis
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         (application as UserApplication).applicationComponent.inject(this)
 
         mainViewModel = ViewModelProvider(this, mainViewModelFactory).get(MainViewModel::class.java)
@@ -41,14 +42,16 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnUserItemClickLis
                 Toast.makeText(this,"Error in getting the data", Toast.LENGTH_SHORT).show()
         })
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        val decoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        recyclerView.addItemDecoration(decoration)
+        mainBinding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            val decoration = DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
+            addItemDecoration(decoration)
 
-        val result = ArrayList<ResultsItem>()
+            val result = ArrayList<ResultsItem>()
 
-        recyclerViewAdapter = RecyclerViewAdapter(result,this)
-        recyclerView.adapter = recyclerViewAdapter
+            recyclerViewAdapter = RecyclerViewAdapter(result,this@MainActivity)
+            adapter = recyclerViewAdapter
+        }
 
     }
 

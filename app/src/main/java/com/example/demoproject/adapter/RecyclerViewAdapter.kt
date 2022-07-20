@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.demoproject.R
 import com.example.demoproject.data.model.ResultsItem
+import com.example.demoproject.databinding.RecyclerRowBinding
 import com.squareup.picasso.Picasso
 
 class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener: OnUserItemClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
@@ -17,30 +18,23 @@ class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener
         notifyDataSetChanged()
     }
 
-    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-
-        val image : ImageView = itemView.findViewById(R.id.image)
-        val name : TextView = itemView.findViewById(R.id.nameTv)
+    class MyViewHolder(val binding: RecyclerRowBinding): RecyclerView.ViewHolder(binding.root){
 
         fun bind(data: ResultsItem,action: OnUserItemClickListener){
-            name.text = data.name?.first +" "+ data.name?.last
 
-            val url = data.picture?.large
-
-            Picasso.get()
-                .load(url)
-                .into(image)
-
-            itemView.setOnClickListener {
+            binding.result = data
+            binding.root.setOnClickListener {
                 action.onItemClick(data,adapterPosition)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recycler_row,parent,false)
+        val view = LayoutInflater.from(parent.context)
 
-        return MyViewHolder(view)
+        val listItemBinding = RecyclerRowBinding.inflate(view,parent,false)
+
+        return MyViewHolder(listItemBinding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
