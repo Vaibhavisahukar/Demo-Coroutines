@@ -9,8 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.demoproject.adapter.RecyclerViewAdapter
+import com.example.demoproject.adapter.UserPagingAdapter
 import com.example.demoproject.data.model.ResultsItem
 import com.example.demoproject.databinding.ActivityMainBinding
 import com.example.demoproject.viewmodel.MainViewModel
@@ -18,11 +17,12 @@ import com.example.demoproject.viewmodel.MainViewModelFactory
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnUserItemClickListener{
+class MainActivity : AppCompatActivity(), UserPagingAdapter.OnUserItemClickListener{
 
     lateinit var mainBinding: ActivityMainBinding
-    lateinit var recyclerViewAdapter: RecyclerViewAdapter
+    //lateinit var recyclerViewAdapter: RecyclerViewAdapter
     lateinit var mainViewModel: MainViewModel
+    lateinit var userPagingAdapter: UserPagingAdapter
 
     @Inject
     lateinit var mainViewModelFactory: MainViewModelFactory
@@ -37,20 +37,22 @@ class MainActivity : AppCompatActivity(), RecyclerViewAdapter.OnUserItemClickLis
 
         mainViewModel.userLiveData.observe(this, Observer {
             if(it != null)
-                recyclerViewAdapter.setUpdatedData(it.results as ArrayList<ResultsItem>)
+                //userPagingAdapter.setUpdatedData(it.results as ArrayList<ResultsItem>)
+                    userPagingAdapter.submitData(lifecycle, it)
             else
                 Toast.makeText(this,"Error in getting the data", Toast.LENGTH_SHORT).show()
         })
 
         mainBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
+            setHasFixedSize(true)
             val decoration = DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
 
             val result = ArrayList<ResultsItem>()
 
-            recyclerViewAdapter = RecyclerViewAdapter(result,this@MainActivity)
-            adapter = recyclerViewAdapter
+            userPagingAdapter = UserPagingAdapter(result,this@MainActivity)
+            adapter = userPagingAdapter
         }
 
     }

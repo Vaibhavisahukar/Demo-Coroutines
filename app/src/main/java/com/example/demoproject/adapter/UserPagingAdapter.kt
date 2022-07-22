@@ -1,17 +1,15 @@
 package com.example.demoproject.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demoproject.R
 import com.example.demoproject.data.model.ResultsItem
 import com.example.demoproject.databinding.RecyclerRowBinding
-import com.squareup.picasso.Picasso
 
-class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener: OnUserItemClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class UserPagingAdapter(var results : ArrayList<ResultsItem>,var clickListener: OnUserItemClickListener): PagingDataAdapter<ResultsItem,UserPagingAdapter.MyViewHolder>(
+    COMPARATOR) {
 
     fun setUpdatedData(results : ArrayList<ResultsItem>) {
         this.results = results
@@ -37,10 +35,10 @@ class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener
         return MyViewHolder(listItemBinding)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    /*override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(results.get(position),clickListener)
 
-    }
+    }*/
 
     override fun getItemCount(): Int {
         return results.size
@@ -49,4 +47,21 @@ class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener
     interface OnUserItemClickListener{
         fun onItemClick(item: ResultsItem,position: Int)
     }
+
+    companion object {
+        private val COMPARATOR = object : DiffUtil.ItemCallback<ResultsItem>() {
+            override fun areItemsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean {
+                return oldItem.id?.name == newItem.id?.name
+            }
+
+            override fun areContentsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean {
+                return oldItem == newItem
+            }
+        }
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.bind(results.get(position),clickListener)
+    }
+
 }

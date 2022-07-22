@@ -8,7 +8,7 @@ import kotlinx.android.parcel.Parcelize
 data class User(
 
 	@field:SerializedName("results")
-	val results: List<ResultsItem?>? = null,
+	val results: List<ResultsItem>,
 
 	@field:SerializedName("info")
 	val info: Info? = null
