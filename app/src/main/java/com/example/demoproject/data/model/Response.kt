@@ -1,6 +1,8 @@
 package com.example.demoproject.data.model
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -96,6 +98,7 @@ data class Login(
 ): Parcelable
 
 @Parcelize
+@Entity
 data class ResultsItem(
 
 	@field:SerializedName("nat")
@@ -104,8 +107,9 @@ data class ResultsItem(
 	@field:SerializedName("gender")
 	val gender: String? = null,
 
+	@PrimaryKey(autoGenerate = false)
 	@field:SerializedName("phone")
-	val phone: String? = null,
+	val phone: String,
 
 	@field:SerializedName("dob")
 	val dob: Dob? = null,

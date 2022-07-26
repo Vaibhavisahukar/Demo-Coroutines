@@ -14,4 +14,5 @@
     <color name="light_white">#DCDCDC</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="purple_50">#F3E5F5</color>
+    <color name="deletecolor">#3F51B5</color>
 </resources>

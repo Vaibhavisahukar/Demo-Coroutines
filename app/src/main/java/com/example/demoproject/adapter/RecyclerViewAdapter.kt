@@ -1,15 +1,14 @@
 package com.example.demoproject.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demoproject.R
 import com.example.demoproject.data.model.ResultsItem
 import com.example.demoproject.databinding.RecyclerRowBinding
-import com.squareup.picasso.Picasso
+import com.example.demoproject.viewmodel.MainViewModel
+
 
 class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener: OnUserItemClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
 
@@ -49,4 +48,5 @@ class RecyclerViewAdapter(var results : ArrayList<ResultsItem>,var clickListener
     interface OnUserItemClickListener{
         fun onItemClick(item: ResultsItem,position: Int)
     }
+
 }

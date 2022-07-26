@@ -3,6 +3,8 @@ package com.example.demoproject.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.demoproject.data.repository.UserRepository
+import com.example.demoproject.database.DataDao
+import com.example.demoproject.database.UserDatabase
 import javax.inject.Inject
 
 class MainViewModelFactory @Inject constructor(private val userRepository: UserRepository): ViewModelProvider.Factory {
