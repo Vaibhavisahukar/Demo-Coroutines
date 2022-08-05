@@ -11,7 +11,8 @@
     <color name="light_black">#221F1F</color>
     <color name="dark_black">#221414</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="light_white">#DCDCDC</color>
+    <color name="light_white">#D6CECE</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="purple_50">#F3E5F5</color>
+    <color name="deletecolor">#3F51B5</color>
 </resources>
