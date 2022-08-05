@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="result"
             type="com.example.demoproject.data.model.ResultsItem" />
@@ -12,11 +13,11 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        app:cardCornerRadius="10dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_10"
         android:layout_marginVertical="@dimen/margin_5"
-        app:cardElevation="1dp"
-        android:layout_height="wrap_content">
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,8 +28,8 @@
                 android:layout_width="75dp"
                 android:layout_height="75dp"
                 android:layout_gravity="center"
-                app:imageUrl="@{result.picture.large}"
                 android:layout_margin="@dimen/margin_10"
+                app:imageUrl="@{result.picture.large}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,11 +39,11 @@
                 android:id="@+id/nameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_20"
+                android:text="@{result.name.first +' '+ result.name.last}"
                 android:textAlignment="textStart"
                 android:textColor="@color/black"
                 android:textSize="@dimen/text_24"
-                android:text="@{result.name.first +' '+ result.name.last}"
-                android:layout_marginStart="@dimen/margin_20"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/image"

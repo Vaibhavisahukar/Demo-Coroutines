@@ -1,6 +1,5 @@
 package com.example.demoproject.utils
 
-import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.example.demoproject.data.model.*
 import com.google.gson.Gson
@@ -14,7 +13,7 @@ class TypeConverter {
 
     @TypeConverter
     fun dobFromJson(dob: String): Dob {
-        return Gson().fromJson(dob,Dob::class.java)
+        return Gson().fromJson(dob, Dob::class.java)
     }
 
     @TypeConverter
@@ -24,7 +23,7 @@ class TypeConverter {
 
     @TypeConverter
     fun nameFromJson(name: String): Name {
-        return Gson().fromJson(name,Name::class.java)
+        return Gson().fromJson(name, Name::class.java)
     }
 
     @TypeConverter
@@ -34,7 +33,7 @@ class TypeConverter {
 
     @TypeConverter
     fun registeredFromJson(registered: String): Registered? {
-        return Gson().fromJson(registered,Registered::class.java)
+        return Gson().fromJson(registered, Registered::class.java)
     }
 
     @TypeConverter

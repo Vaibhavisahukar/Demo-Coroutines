@@ -8,7 +8,7 @@ import com.example.demoproject.utils.TypeConverter
 
 @Database(entities = [ResultsItem::class], version = 1)
 @TypeConverters(TypeConverter::class)
-abstract class UserDatabase: RoomDatabase() {
+abstract class UserDatabase : RoomDatabase() {
 
     abstract fun getDataDao(): DataDao
 

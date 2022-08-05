@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="results"
             type="com.example.demoproject.data.model.ResultsItem" />
@@ -28,20 +29,20 @@
                 android:id="@+id/collapsingToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/custom_bg"
                 android:fitsSystemWindows="true"
                 app:contentScrim="@color/design_default_color_primary"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                android:background="@drawable/custom_bg">
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
                 <TextView
                     android:id="@+id/nameDetails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{results.name.title + ' ' + results.name.first + ' ' + results.name.last}"
-                    android:textSize="@dimen/text_40"
                     android:layout_gravity="center|top"
                     android:layout_margin="@dimen/margin_60"
-                    android:textColor="@color/white" />
+                    android:text="@{results.name.title + ' ' + results.name.first + ' ' + results.name.last}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_40" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -56,15 +57,15 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            android:background="@drawable/layout_bg">
+            android:background="@drawable/layout_bg"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_marginEnd="@dimen/margin_40"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/margin_40"
                 android:layout_marginTop="@dimen/margin_100"
-                android:layout_height="match_parent">
+                android:layout_marginEnd="@dimen/margin_40">
 
                 <TextView
                     android:id="@+id/phone"
@@ -72,8 +73,8 @@
                     android:layout_height="wrap_content"
                     android:text="@{@string/phones +' ' + results.phone}"
                     android:textColor="@color/grey"
-                    android:textStyle="bold"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -83,9 +84,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="@{@string/dob +' ' + results.dob.date}"
-                    android:textStyle="bold"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/phone" />
 
@@ -96,8 +97,8 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="@{@string/age +' ' + results.dob.age.toString()}"
                     android:textColor="@color/grey"
-                    android:textStyle="bold"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dob" />
 
@@ -106,11 +107,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_5"
-                    android:text="@{@string/email +' ' + results.email}"
                     android:singleLine="true"
+                    android:text="@{@string/email +' ' + results.email}"
                     android:textColor="@color/grey"
-                    android:textStyle="bold"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/age" />
 
@@ -121,8 +122,8 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="@{@string/address ++' ' + results.location.street.number +','+' ' + results.location.street.name}"
                     android:textColor="@color/grey"
-                    android:textStyle="bold"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -133,8 +134,8 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="@{results.location.city +','+' '+ results.location.country}"
                     android:textColor="@color/grey"
-                    android:textStyle="bold"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/address" />
 
@@ -145,8 +146,8 @@
                     android:layout_marginTop="@dimen/margin_5"
                     android:text="@{@string/postcode +' ' + results.location.postcode}"
                     android:textColor="@color/grey"
-                    android:textStyle="bold"
                     android:textSize="@dimen/text_20"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/city" />
 
@@ -158,11 +159,11 @@
             android:id="@+id/imageDetails"
             android:layout_width="180dp"
             android:layout_height="150dp"
-            app:imageUrl="@{results.picture.large}"
+            android:layout_marginEnd="@dimen/margin_30"
             android:baselineAlignBottom="true"
+            app:imageUrl="@{results.picture.large}"
             app:layout_anchor="@id/appbar"
-            app:layout_anchorGravity="end|bottom"
-            android:layout_marginEnd="@dimen/margin_30" />
+            app:layout_anchorGravity="end|bottom" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -4,11 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Vaibhavi/AndroidStudioProjects/DemoProject/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/drawable/button.xml" value="0.1105" />
         <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/drawable/custom_bg.xml" value="0.1285" />
         <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/drawable/layout_bg.xml" value="0.1285" />
         <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/drawable/placeholder.xml" value="0.1285" />
-        <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/layout/activity_main.xml" value="0.184375" />
+        <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/layout/activity_user_details.xml" value="0.18" />
+        <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/layout/filtered_item.xml" value="0.1" />
+        <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/layout/loader_item.xml" value="0.2" />
         <entry key="..\:/Users/Vaibhavi/Desktop/DemoProject/app/src/main/res/layout/recycler_row.xml" value="0.22" />
       </map>
     </option>

@@ -1,16 +1,15 @@
 package com.example.demoproject.data.repository
 
-import android.os.AsyncTask
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.demoproject.data.model.ResultsItem
 import com.example.demoproject.data.model.User
 import com.example.demoproject.data.retrofit.Api
 import com.example.demoproject.database.DataDao
-import com.example.demoproject.database.UserDatabase
 import javax.inject.Inject
 
-class UserRepository @Inject constructor(private val api: Api,val dataDao: DataDao) {
+class UserRepository @Inject constructor(private val api: Api, private val dataDao: DataDao) {
 
     private val _user = MutableLiveData<User>()
 
@@ -19,10 +18,12 @@ class UserRepository @Inject constructor(private val api: Api,val dataDao: DataD
     suspend fun getUser() {
         val userResults = api.getUserDetails()
         if (userResults.isSuccessful && userResults.body() != null) {
-            dataDao.insertData(userResults.body()!!.results as ArrayList<ResultsItem>)
+            dataDao.insertData(userResults.body()!!.results)
             _user.postValue(userResults.body())
+            Log.d("message", "response+$allUsers")
         }
     }
 
     suspend fun deleteUser(resultsItem: ResultsItem) = dataDao.delete(resultsItem)
+    suspend fun deleteAllUser() = dataDao.deleteUsers()
 }
